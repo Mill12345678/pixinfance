@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PiXerse Capability Profile — UBT Submission</title>
+<!--
+  ============================================================
+  PiXerse CAPABILITY PROFILE — UBT SUBMISSION
+  Version 1.0 | Updated 19/08/2026 | Lead: Hoang Ngoc Chau Giang
+
+  BRAND: Quso.ai style (purple #7F56D9 · white · dark slate · rounded corners · soft shadows)
+  ============================================================
+  HOW TO ADD DEMO / VIDEO / IMAGE (kept in code, not displayed yet):
+  Every use case & case study below contains a ready comment marker.
+  When assets are ready, replace that marker with a real tag, e.g.:
+       &lt;iframe src="demo-link" width="100%" height="400"&gt;&lt;/iframe&gt;
+       &lt;video src="video.mp4" controls&gt;&lt;/video&gt;
+       &lt;img src="image.png" alt="Description"&gt;
+  ============================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#7F56D9;
+    --primary-dark:#6B46C1;
+    --primary-soft:#F5F3FF;
+    --dark:#0F172A;
+    --dark-2:#111827;
+    --grey:#4B5563;
+    --grey-light:#6B7280;
+    --bg:#FFFFFF;
+    --surface:#F8FAFC;
+    --border:#E5E7EB;
+    --radius:16px;
+    --shadow:0 18px 40px -20px rgba(15,23,42,.22);
+    --font:'Plus Jakarta Sans','Inter','Poppins',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:24px;}
+  body{
+    font-family:var(--font);
+    color:var(--grey);
+    background:
+      radial-gradient(circle at 1px 1px, rgba(127,86,217,.06) 1px, transparent 0) 0 0/26px 26px,
+      var(--bg);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  .sheet{max-width:980px;margin:0 auto;padding:0 32px 80px;}
+  h1,h2,h3,h4{color:var(--dark);line-height:1.3;letter-spacing:-.01em;}
+  .hl{color:var(--primary);}
+  .kicker{color:var(--primary);font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;}
+  section{margin-top:52px;}
+  section > h2{
+    font-size:22px;font-weight:800;display:flex;align-items:center;gap:10px;margin-bottom:24px;position:relative;padding-bottom:10px;
+  }
+  section > h2::after{content:"";position:absolute;left:0;bottom:0;width:56px;height:4px;border-radius:4px;background:linear-gradient(90deg,var(--primary),var(--primary-dark));}
+  section > h2 .sec-no{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;border-radius:10px;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;font-size:15px;flex:none;}
+  .note-callout{background:var(--primary-soft);border:1px solid #E9E3FA;border-left:4px solid var(--primary);border-radius:12px;padding:14px 18px;font-size:13.5px;color:var(--grey);margin-bottom:24px;}
+  .note-callout b{color:var(--dark);}
+
+  .doc-head{
+    background:linear-gradient(135deg,#0F172A,#1E293B);color:#fff;border-radius:20px;
+    padding:36px 40px;margin-top:32px;position:relative;overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .doc-head::after{content:"";position:absolute;top:-120px;right:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(127,86,217,.45),transparent 65%);}
+  .doc-head .dlogo{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+  .doc-head .dlogo .mark{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));display:grid;place-items:center;font-size:22px;font-weight:800;}
+  .doc-head h1{color:#fff;font-size:26px;font-weight:800;line-height:1.3;}
+  .doc-head h1 small{display:block;font-size:13px;font-weight:600;color:#C7D2FE;margin-top:4px;letter-spacing:.06em;text-transform:uppercase;}
+  .doc-head .meta{display:flex;gap:28px;flex-wrap:wrap;margin-top:20px;position:relative;z-index:1;}
+  .doc-head .meta div{font-size:12.5px;color:#CBD5E1;}
+  .doc-head .meta b{color:#fff;font-weight:700;}
+
+  .toc{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:22px 28px;box-shadow:var(--shadow);margin-top:28px;}
+  .toc h3{font-size:15px;font-weight:800;margin-bottom:12px;color:var(--dark);}
+  .toc ol{list-style:none;counter-reset:toc;display:grid;grid-template-columns:repeat(2,1fr);gap:8px 30px;}
+  @media(max-width:700px){.toc ol{grid-template-columns:1fr;}}
+  .toc li{counter-increment:toc;font-size:14px;font-weight:600;color:var(--grey);}
+  .toc li::before{content:counter(toc,decimal-leading-zero);color:var(--primary);font-weight:800;margin-right:10px;font-size:12px;}
+  .toc a{color:var(--grey);text-decoration:none;transition:color .2s;}
+  .toc a:hover{color:var(--primary);}
+
+  .lead{font-size:15.5px;color:var(--grey);}
+  .lead p{margin-bottom:14px;}
+  .tagline{
+    margin-top:18px;padding:14px 18px;background:var(--primary-soft);border:1px dashed #C9B8F6;
+    border-radius:12px;font-size:15px;font-weight:700;color:var(--primary-dark);
+  }
+  ul.list{list-style:none;margin-top:6px;}
+  ul.list li{position:relative;padding-left:22px;font-size:14.5px;margin-bottom:9px;}
+  ul.list li::before{content:"•";color:var(--primary);font-weight:800;position:absolute;left:4px;font-size:16px;}
+  ul.list li b{color:var(--dark);}
+  .sub{margin:18px 0 10px;font-size:16.5px;font-weight:800;color:var(--dark);}
+
+  .pillar{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:26px 28px;margin-bottom:26px;box-shadow:var(--shadow);}
+  .pillar.featured{border:2px solid var(--primary);}
+  .pillar .p-head{display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap;}
+  .pillar .p-num{width:44px;height:44px;flex:none;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;display:grid;place-items:center;font-weight:800;font-size:18px;}
+  .pillar .p-title h3{font-size:19px;font-weight:800;}
+  .pillar .p-title .p-tag{display:inline-block;margin-top:5px;font-size:11px;font-weight:700;color:var(--primary-dark);background:var(--primary-soft);padding:3px 12px;border-radius:50px;letter-spacing:.05em;text-transform:uppercase;}
+  .pillar .desc{font-size:14.5px;color:var(--grey);margin-bottom:16px;}
+  .pillar .cap{font-size:14px;color:var(--grey);margin-bottom:8px;padding-left:22px;position:relative;}
+  .pillar .cap::before{content:"✓";position:absolute;left:0;color:var(--primary);font-weight:800;}
+  .pillar .cap b{color:var(--dark);}
+  .pillar .use{margin-top:18px;}
+  .pillar .use-title{font-size:13px;font-weight:800;color:var(--grey-light);text-transform:uppercase;letter-spacing:.1em;padding-bottom:6px;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .pillar .use-title::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--primary);flex:none;}
+  .pillar .use-item{padding:12px 16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;}
+  .pillar .use-item h4{font-size:14.5px;font-weight:800;color:var(--dark);margin-bottom:4px;}
+  .pillar .use-item h4 .ref{color:var(--primary);font-size:12px;font-weight:700;}
+  .pillar .use-item p{font-size:13.5px;color:var(--grey);}
+  .stack-line{font-size:13px;color:var(--grey-light);margin-top:16px;padding:14px 16px;background:var(--surface);border-radius:10px;}
+  .stack-line b{color:var(--dark);}
+
+  .cs{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:26px;overflow:hidden;}
+  .cs-head{background:linear-gradient(135deg,var(--primary-soft),#fff);padding:16px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .cs-head .cs-num{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;font-weight:800;font-size:12px;padding:5px 14px;border-radius:50px;letter-spacing:.04em;}
+  .cs-head h3{font-size:16.5px;font-weight:800;color:var(--dark);}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  table td{border-bottom:1px solid var(--border);padding:11px 22px;vertical-align:top;color:var(--grey);}
+  table tr:last-child td{border-bottom:none;}
+  table td:first-child{width:170px;font-weight:800;color:var(--dark);background:var(--surface);white-space:normal;}
+  @media(max-width:640px){table td:first-child{width:120px;}}
+  .demo-row{display:none;}
+
+  .grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+  @media(max-width:700px){.grid2{grid-template-columns:1fr;}}
+  .mini{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow);}
+  .mini h3{font-size:15.5px;font-weight:800;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .mini p{font-size:13.5px;color:var(--grey-light);}
+
+  .cta{background:linear-gradient(135deg,var(--primary),var(--primary-dark));border-radius:20px;padding:40px;text-align:center;color:#fff;margin-top:52px;position:relative;overflow:hidden;}
+  .cta h2{color:#fff;font-size:24px;font-weight:800;margin-bottom:10px;}
+  .cta p{color:rgba(255,255,255,.9);max-width:560px;margin:0 auto 22px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:14px;padding:12px 26px;border-radius:50px;transition:.2s;}
+  .btn-primary{background:#fff;color:var(--primary-dark);box-shadow:0 14px 30px -12px rgba(0,0,0,.35);}
+  .btn-primary:hover{transform:translateY(-2px);}
+  footer{padding:30px 0 50px;border-top:1px solid var(--border);text-align:center;color:var(--grey-light);font-size:13px;}
+
+  @media print{
+    .sheet{padding:0;max-width:100%;}
+    body{background:#fff;}
+    .pillar,.cs,.toc,.mini{box-shadow:none;break-inside:avoid;}
+    section{margin-top:28px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <!-- ================= DOC HEADER ================= -->
+  <div class="doc-head">
+    <div class="dlogo">
+      <span class="mark">P</span>
+      <h1>PIXERSE CAPABILITY PROFILE
+        <small>UBT Submission · Strategic Tech Partner</small>
+      </h1>
+    </div>
+    <div class="meta">
+      <div><b>Version:</b> 1.0</div>
+      <div><b>Last updated:</b> 19/08/2026</div>
+      <div><b>Lead:</b> Hoang Ngoc Chau Giang</div>
+    </div>
+  </div>
+
+  <!-- ================= TOC ================= -->
+  <nav class="toc">
+    <h3>TABLE OF CONTENTS</h3>
+    <ol>
+      <li><a href="#s1">Executive Summary</a></li>
+      <li><a href="#s2">Services &amp; Core Capabilities</a></li>
+      <li><a href="#s3">Case Studies &amp; Measured Results</a></li>
+      <li><a href="#s4">Team</a></li>
+      <li><a href="#s5">Security &amp; Compliance</a></li>
+      <li><a href="#s6">Delivery Process</a></li>
+      <li><a href="#s7">Commercials &amp; Contract</a></li>
+      <li><a href="#s8">Clients &amp; References</a></li>
+      <li><a href="#s9">Vision &amp; Positioning</a></li>
+      <li><a href="#s10">Contact PiXerse</a></li>
+    </ol>
+  </nav>
+
+  <!-- ================= 1. EXECUTIVE SUMMARY ================= -->
+  <section id="s1">
+    <h2><span class="sec-no">1</span> EXECUTIVE SUMMARY</h2>
+    <div class="lead">
+      <p>
+        What sets PiXerse apart is our core R&amp;D team with 5+ years of hands-on experience, the ability to
+        adopt new technology trends extremely fast, and a mindset that solves real business problems rather
+        than merely shipping software. PiXerse is today a trusted R&amp;D partner for clients across
+        Europe, Australia, the US and APAC.
+      </p>
+    </div>
+    <div class="tagline">
+      Positioning statement: "Your strategic AI R&amp;D partner — driving deep digital transformation for your business ecosystem."
+    </div>
+
+    <h3 class="sub">1.1 Focus Industries &amp; Target Segment</h3>
+    <ul class="list">
+      <li><b>Finance – Accounting &amp; Business Advisory</b> — Automating document workflows, intelligent data extraction and embedding AI Agentic into AMS, SAP and ERP systems.</li>
+      <li><b>Manufacturing &amp; Transportation / Warehousing</b> — Quality control, workplace safety and operational optimization using Edge AI (Computer Vision).</li>
+      <li><b>Group Buying Networks &amp; Commerce</b> — Analyzing buying trends with Big Data to negotiate better prices and forecast demand.</li>
+    </ul>
+    <div class="note-callout" style="margin-top:16px;margin-bottom:0;">
+      <b>Ideal target segment:</b> B2B organizations or groups with a large SME member network (such as UBT) that need internal process automation, or require an "outsourced AI R&amp;D unit" to deliver technology solutions to members across the network.
+    </div>
+  </section>
+
+  <!-- ================= 2. SERVICES ================= -->
+  <section id="s2">
+    <h2><span class="sec-no">2</span> SERVICES &amp; CORE CAPABILITIES</h2>
+    <p class="lead" style="margin-bottom:22px;">
+      Three capability pillars, ordered by strategic priority: <b style="color:var(--primary-dark)">AI Agentic leads</b>,
+      other AI capabilities form the foundation, and software is the vehicle that brings them to life.
+    </p>
+
+    <!-- 2.1 AI AGENTIC -->
+    <div class="pillar featured" id="s2-1">
+      <div class="p-head">
+        <div class="p-num">2.1</div>
+        <div class="p-title">
+          <h3>AI Agentic &amp; Automation <span class="hl">(Core — our key differentiator)</span></h3>
+          <span class="p-tag">★ Core Focus</span>
+        </div>
+      </div>
+      <p class="desc">
+        This is PiXerse's core capability. We deploy <b>AI Agents (autonomous assistants)</b> powered by GenAI to
+        automate complex workflows — from IT ticket handling and self-healing incidents, portfolio/project governance,
+        natural-language device control, to reconciling accounting documents across AMS/SAP/ERP. Humans always keep
+        control through a clear autonomy matrix (L0–L4) and transparent audit logs.
+      </p>
+      <div class="cap">Build <b>multi-agent workflows</b>: AI agents coordinate to process, reconcile and approve workflows (tickets, documents, operations) without manual human steps.</div>
+      <div class="cap"><b>AI agents that control devices/systems</b>: converting natural-language requests into standard operational commands (e.g., drone control, actions on AMS/SAP/ERP).</div>
+      <div class="cap"><b>RAG / hybrid search</b> over business data: accurate extraction from invoices, multi-language contracts, internal documents and support tickets — minimizing hallucination.</div>
+      <div class="cap"><b>AI Governance</b>: hallucination control, human-in-the-loop for critical decisions, immutable audit logs, and dual-LLM reconciliation using mathematical rules.</div>
+
+      <div class="use">
+        <div class="use-title">Deployed use cases</div>
+
+        <div class="use-item">
+          <h4>AI Agentic for Managed IT Services (AMS) <span class="ref">— Case Study #4</span></h4>
+          <p>Automatic ticket triage &amp; resolution, self-healing incidents with RCA, SOP proposals from recurring data. Target KPIs: ≥25% lower cost/ticket; ≥50% lower MTTR; ≥40% straight-through; ≤ $0.35/ticket; ≥99% SLA.</p>
+          <!-- 🎬 MEDIA SLOT (Case #1): ADD <iframe> / <video> / <img> HERE -->
+        </div>
+
+        <div class="use-item">
+          <h4>Natural-language Drone Control Agent <span class="ref">— Case Study #6</span></h4>
+          <p>Replaces basic pilot operations with natural-language commands converted into standard Mavlink JSON; roadmap from LLM integration to Edge AI tracking to end-to-end solutions.</p>
+          <!-- 🎬 MEDIA SLOT (Case #12): ADD <iframe> / <video> / <img> HERE -->
+        </div>
+
+        <div class="use-item">
+          <h4>AI Governance PMO <span class="ref">— Case Study #5</span></h4>
+          <p>A weekly pipeline of two independent LLMs scoring project credibility and flagging risks, automatically producing Word reports and BI dashboards.</p>
+          <!-- 🎬 MEDIA SLOT (Case #10): ADD <iframe> / <video> / <img> HERE -->
+        </div>
+
+        <div class="use-item">
+          <h4>Knowledge bots / Internal Assistants <span class="ref">— Case Study #13, #14</span></h4>
+          <p>RAG-based bots that answer accurately and know how to say "no" when information is insufficient; local LLM deployment to ensure data privacy.</p>
+          <!-- 🎬 MEDIA SLOT (Case #8, #15): ADD <iframe> / <video> / <img> HERE -->
+        </div>
+
+        <div class="use-item">
+          <h4>Virtual Accounting Clerk</h4>
+          <p>Automatically reads thousands of invoices, extracts data and posts them directly into AMS/SAP every day with zero manual data entry.</p>
+          <!-- 🎬 MEDIA SLOT (Virtual Accounting): ADD <iframe> / <video> / <img> HERE -->
+        </div>
+      </div>
+
+      <div class="stack-line"><b>Supported platforms:</b> OpenAI, Anthropic Claude, Gemini, Llama 3 (self-hosted), Azure OpenAI.</div>
+    </div>
+
+    <!-- 2.2 AI MODELING / CV / BIG DATA -->
+    <div class="pillar" id="s2-2">
+      <div class="p-head">
+        <div class="p-num">2.2</div>
+        <div class="p-title">
+          <h3>AI Modeling, Computer Vision &amp; Big Data</h3>
+          <span class="p-tag">Foundation AI capabilities</span>
+        </div>
+      </div>
+      <p class="desc">
+        Our remaining AI capabilities combine Computer Vision deployed at the edge (Edge AI) and Machine Learning
+        models over Big Data — helping clients automate image-based monitoring and make data-driven decisions at low operating cost.
+      </p>
+      <div class="cap"><b>Edge AI &amp; Computer Vision</b>: real-time image/video recognition on CCTV, UAVs and drones at low cost without expensive cloud infrastructure; optimized across multiple hardware platforms (NVIDIA Jetson, Qualcomm, Raspberry Pi + Hailo).</div>
+      <div class="cap"><b>ML models</b>: demand forecasting, anomaly/fraud detection, supply chain optimization.</div>
+      <div class="cap"><b>Data engineering</b>: data lakes/data warehouses, normalizing fragmented data into a single source of truth.</div>
+      <div class="cap">Intuitive <b>BI &amp; dashboards</b> to support C-level strategic decisions.</div>
+
+      <div class="use">
+        <div class="use-title">Deployed use cases</div>
+
+        <div class="use-item">
+          <h4>Edge AI package touchdown detection <span class="ref">— Case Study #7</span></h4>
+          <p>Delivery drones respond within 175–400ms on the edge device (Coral + CM4), target accuracy ≥85%, eliminating winch rewind issues for lightweight packages.</p>
+          <!-- 🎬 MEDIA SLOT (Case #3): ADD <iframe> / <video> / <img> HERE -->
+        </div>
+
+        <div class="use-item">
+          <h4>Multi-domain aerial threat detection <span class="ref">— Case Study #8</span></h4>
+          <p>Security – traffic – fire domains, 12 threat classes, RGB–Thermal–Radar fusion running 24/7, 74–78% mAP; 15,287 violations recorded in field trials with Vietnamese law enforcement agencies.</p>
+          <!-- 🎬 MEDIA SLOT (Case #4): ADD <iframe> / <video> / <img> HERE -->
+        </div>
+
+        <div class="use-item">
+          <h4>Multi-cloud FinOps <span class="ref">— Case Study #11</span></h4>
+          <p>Consolidating cost data from 6 cloud providers, automated invoicing via ZOHO, and cost anomaly detection.</p>
+          <!-- 🎬 MEDIA SLOT (Case #5): ADD <iframe> / <video> / <img> HERE -->
+        </div>
+
+        <div class="use-item">
+          <h4>AI inventory analysis &amp; forecasting <span class="ref">— Case Study #12</span></h4>
+          <p>ABC classification, seasonal forecasting, anomaly detection and auto-generated reorder points — targeting a 70% cut in stockouts and 30% less excess inventory.</p>
+          <!-- 🎬 MEDIA SLOT (Case #7): ADD <iframe> / <video> / <img> HERE -->
+        </div>
+
+        <div class="use-item">
+          <h4>Business Health Scoring</h4>
+          <p>ML analysis of operational data to predict early risk or growth opportunities for SMEs in a network.</p>
+          <!-- 🎬 MEDIA SLOT (Business Health): ADD <iframe> / <video> / <img> HERE -->
+        </div>
+      </div>
+
+      <div class="stack-line"><b>Supported stack:</b> Python, PySpark, Databricks, Airflow, Snowflake, BigQuery, NVIDIA TensorRT, C++.</div>
+    </div>
+
+    <!-- 2.3 SOFTWARE -->
+    <div class="pillar" id="s2-3">
+      <div class="p-head">
+        <div class="p-num">2.3</div>
+        <div class="p-title">
+          <h3>Software Development</h3>
+          <span class="p-tag">The vehicle for delivery</span>
+        </div>
+      </div>
+      <p class="desc">
+        A solid engineering foundation to bring every solution to life: custom, high-performance, multi-platform
+        systems, ready to integrate AI into a company's existing workflows.
+      </p>
+      <div class="cap">Web / mobile application development — multi-tenant systems, ERP, CRM, portals and mobile apps.</div>
+      <div class="cap">API design &amp; system integration — ERP, accounting, payments, customs, mapping and e-signature.</div>
+      <div class="cap">Infrastructure &amp; DevOps — Docker, Kubernetes, CI/CD, security, monitoring and multi-environment deployment.</div>
+
+      <div class="use">
+        <div class="use-title">Deployed use cases</div>
+
+        <div class="use-item">
+          <h4>Transport &amp; Logistics ERP <span class="ref">— Case Study #16</span></h4>
+          <p>6 business modules, managing 208 vehicles / 215 drivers, mobile app, real-time routing and contribution-based payroll.</p>
+          <!-- 🎬 MEDIA SLOT (Case #2): ADD <iframe> / <video> / <img> HERE -->
+        </div>
+
+        <div class="use-item">
+          <h4>Multi-tenant Franchise Management Platform <span class="ref">— Case Study #17</span></h4>
+          <p>Tenant-level data isolation, accounting integration (Xero/QuickBooks/MYOB), multi-gateway payments, Communication Hub, location-aware booking, and AI ad copy &amp; receipt classification.</p>
+          <!-- 🎬 MEDIA SLOT (Case #6): ADD <iframe> / <video> / <img> HERE -->
+        </div>
+
+        <div class="use-item">
+          <h4>CRM x ATS · Parking · Streaming · Travel <span class="ref">— Case Study #15, #18, #19, #20</span></h4>
+          <p>Recruitment platform (CRM + ATS), ticketless parking app (Flutter + NestJS), vertical short-film streaming, and AI travel planning.</p>
+          <!-- 🎬 MEDIA SLOT (Case #9, #11, #13, #14): ADD <iframe> / <video> / <img> HERE -->
+        </div>
+      </div>
+
+      <div class="stack-line"><b>Tech stack:</b> .NET, Java Spring, Node.js/NestJS, React, Flutter, PostgreSQL, Docker, K8s.</div>
+    </div>
+  </section>
+
+  <!-- ================= 3. CASE STUDIES ================= -->
+  <section id="s3">
+    <h2><span class="sec-no">3</span> CASE STUDIES &amp; MEASURED RESULTS</h2>
+    <div class="note-callout">
+      <b>Note:</b> The case studies below are drawn from PiXerse's real project records (client and product names have been <b>anonymized for confidentiality</b>).
+      Figures marked <i>"(target)"</i> are design KPIs from BRDs/proposals — please confirm final figures with clients before publishing.
+    </div>
+
+    <!-- CASE 1 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #1</span><h3>Autonomous Agentic Drone Control System</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>Aerospace / Robotics & Embodied AI</td></tr>
+        <tr><td>Solution type</td><td>AI Agentic & Automation</td></tr>
+        <tr><td>Problem</td><td>Traditional UAV operation requires licensed pilots and 30–45 minutes of manual flight planning in complex GCS software. In emergencies or when GPS/network is lost, manual control carries a high risk of error and cannot meet fast-response requirements.</td></tr>
+        <tr><td>Solution</td><td>A multi-layer AI Agentic system accepting natural-language commands (Voice/Text), automatically decomposing high-level goals into deterministic MAVLink command sequences (Takeoff, Waypoint Navigation, Orbit, Return-to-Launch), validating physical feasibility and safe airspace before issuing commands, and maintaining a telemetry supervision loop that self-handles anomalies (obstacles, low battery). Supports 2 modes: cloud LLM API for ground stations and a local SLM running directly on NVIDIA Jetson Orin NX for offline operation.</td></tr>
+        <tr><td>Measured results</td><td>Planning time: cut from 30–45 minutes of manual work to under 2–3 minutes (with human-in-the-loop safety confirmation). Command parsing/inference latency ~150–250ms on Jetson Orin NX. Command-to-action accuracy >94.5% on standard flight scenarios. Safety: automatic fail-safe (Hover/RTL) triggered on abnormal telemetry or out-of-bounds commands.</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #1): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 2 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #2</span><h3>Aerial Carbon Baseline & Forest Intelligence Platform</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>Forestry / ESG reporting & carbon credits (Ecology & Climate Tech)</td></tr>
+        <tr><td>Solution type</td><td>Remote Sensing, Instance Segmentation & GIS Allometric Modeling</td></tr>
+        <tr><td>Problem</td><td>Surveying canopy area, counting trees and estimating biomass/carbon for ESG reporting and carbon-credit validation (REDD+) via manual sample plots takes weeks-to-months, is costly and dangerous in mountainous terrain.</td></tr>
+        <tr><td>Solution</td><td>An automated forestry analytics platform from high-resolution UAV imagery: YOLO instance segmentation of individual tree canopies adapted to flight altitude; canopy size calibration from pixels to meters using camera intrinsics + GPS/telemetry; industry allometric equations to estimate biomass volume and carbon stocks; full visualization on a GIS map (Leaflet.js/PostgreSQL).</td></tr>
+        <tr><td>Measured results</td><td>91.5% F1-score tree counting (plantation), ~82% in mixed natural forests; 86.8% mAP@50 canopy segmentation; ~9.2% MAPE in canopy-diameter and biomass estimation vs. field samples; a 50 ha survey cut from 5–7 field-days to one ~45-minute flight plus 2–3 hours of automated processing.</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #2): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 3 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #3</span><h3>Smart City AI Drone Surveillance</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>Smart City / Public-space & urban-waterway surveillance</td></tr>
+        <tr><td>Solution type</td><td>Computer Vision, Edge AI & Spatial Geofencing</td></tr>
+        <tr><td>Problem</td><td>West Lake (Hanoi) spans ~500 ha with a ~17km shoreline; frequent encroachments, illegal discharges and water-safety violations. Fixed shore cameras are blocked by trees and too far from water, while foot patrols cannot cover continuously; a drone patrol must detect violations in real time without false alarms from waves, sun glare or camera shake.</td></tr>
+        <tr><td>Solution</td><td>Autonomous UAV patrol with YOLO detection optimized for real-time video; spatial geofencing defining restricted zones on water and along the shore; persistence tracking (ByteTrack) across 15–30 frames to detect illegal vehicles and gatherings while eliminating false alarms; GStreamer pipeline connected to NVIDIA Jetson Orin for edge-native inference, sending violation coordinates to the city operations center.</td></tr>
+        <tr><td>Measured results</td><td>88.5% mAP@50 on real urban/water datasets; ~91.2% recall for people/vehicles in daylight; false positive rate cut from ~18% to under 3.5%; stable 28–32 FPS at 1080p on Jetson Orin NX; full 17km shoreline scan reduced from 3–4 hours of ground patrol to ~25–30 minutes of automated flight.</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #3): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 4 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #4</span><h3>AI Agentic for Managed IT Services (AMS)</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>IT – Managed Services (AMS) / Finance – Accounting</td></tr>
+        <tr><td>Solution type</td><td>AI Agentic &amp; Automation (GenAI)</td></tr>
+        <tr><td>Problem</td><td>High volume of repetitive L0–L1.5 tickets and L2–L3 incidents that depend heavily on human labor; labor cost is the largest cost item scaling with client base; operational knowledge is scattered across people's heads.</td></tr>
+        <tr><td>Solution</td><td>Designed a 4-pillar AI Agentic platform (knowledge transfer, user support, monitoring &amp; self-healing, process automation) on a shared service core (KB, IAM, AI Gateway, Work Item/SLA): automatic ticket triage &amp; resolution, self-healing incidents with RCA, SOP proposals from recurring data; pilot-first roadmap (Demo POC 3–4 weeks → Pilot 4–8 weeks → Scale); humans keep control via an L0–L4 autonomy matrix and immutable audit logs.</td></tr>
+        <tr><td>Measured results</td><td>Design KPIs (target): ≥25% lower cost/ticket; ≥50% lower MTTR; ≥40% straight-through at pilot; ≤ $0.35/ticket; ≥99% SLA attainment (requires 90-day baseline to confirm)</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #4): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 5 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #5</span><h3>AI Governance for Portfolio Delivery (PMO)</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>IT – Project management / PMO</td></tr>
+        <tr><td>Solution type</td><td>GenAI (Dual-LLM, schema-based RAG)</td></tr>
+        <tr><td>Problem</td><td>Manual, subjective and inconsistent project status reporting; poor early detection of schedule slips and budget overruns.</td></tr>
+        <tr><td>Solution</td><td>A weekly AI pipeline: ingests standardized project files → computes deterministic metrics (SPI/CPI/forecast-at-completion) in Python → two independent LLMs analyze and return schema-valid JSON → reconciles via mathematical rules → generates Word reports + BI dashboards; schema-based RAG; immutable, idempotent audit logs.</td></tr>
+        <tr><td>Measured results</td><td>Design capability: manual reporting eliminated; every project gets a 0–10 credibility score, risk flags and recommended actions each week.</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #5): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 6 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #6</span><h3>Natural-language Drone Control Agent</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>Drones / Aerospace / Automation</td></tr>
+        <tr><td>Solution type</td><td>GenAI + Edge AI (AI Agent)</td></tr>
+        <tr><td>Problem</td><td>Drone operation requires skilled pilots; repetitive basic operations consume significant time.</td></tr>
+        <tr><td>Solution</td><td>Standalone agent server receiving natural-language requests and converting them into standard control commands (Mavlink JSON) displayed on the existing platform; 3-phase roadmap: LLM integration → Edge AI tracking on dedicated hardware → end-to-end client solutions.</td></tr>
+        <tr><td>Measured results</td><td>Targets: beta within 2–3 months; completed AI system architecture, pitch deck and demo video presented at a major startup technology event.</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #6): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 7 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #7</span><h3>Winch AI — Safe autonomous winch-based drone delivery</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>Air transport / Autonomous delivery (winch systems)</td></tr>
+        <tr><td>Solution type</td><td>Computer Vision, Optical Flow &amp; Finite State Machine (FSM)</td></tr>
+        <tr><td>Problem</td><td>Detecting package touchdown via current interpolation failed for lightweight packages, causing winch rewind errors; winch release risks accidents if released at the wrong height, if the hook is stuck, or if obstacles/people are in the landing zone; mechanical triggers suffer contact-sensor errors and rely on human observation; the instant response requirement (175–400ms) made cloud processing impossible.</td></tr>
+        <tr><td>Solution</td><td>An edge AI module classifying package state (moving/stable) combined with a 4-gate vision verification pipeline integrated with an FSM: (1) landing zone clear, (2) touchdown confirmed, (3) hook separation, (4) package departed; Lucas-Kanade Optical Flow plus pixel-level frame differencing; multi-environment dataset of at least 6,500 images/label; optimized for Coral + CM4 / Hailo-8 / Rockchip RK3588 via a low-latency GStreamer pipeline.</td></tr>
+        <tr><td>Measured results</td><td>98.6% drop-state verification accuracy on 500+ real and simulated flight cycles; target accuracy ≥85%; ~35–50ms/frame processing; winch release decision within 0.3–0.5s after safe touchdown; 20–28 FPS; AI module power ~5–8W; 100% prevention of premature winch rewind; 2–5cm package movement after touchdown.</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #7): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 8 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #8</span><h3>Multi-domain aerial threat detection (Security – Traffic – Fire)</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>Public sector / Security / Traffic / Fire safety</td></tr>
+        <tr><td>Solution type</td><td>Computer Vision / Edge AI (R&amp;D)</td></tr>
+        <tr><td>Problem</td><td>Fragmented security, traffic and fire systems with no real-time cross-domain awareness; city-wide coverage cost up to USD 500,000; only 5–10% of urban area monitored.</td></tr>
+        <tr><td>Solution</td><td>Developed an AI framework detecting 12 threat classes simultaneously (weapons, speeding, no helmet, fire, smoke, crowd anomalies…); synthetic perspective homography (48,000 variants) overcoming 45–75° domain shift; RGB–Thermal–Radar fusion for 24/7 operation; optimized for 4 edge platforms (Jetson Orin NX, Xavier NX, Qualcomm QCS6490, Raspberry Pi 5 + Hailo-8).</td></tr>
+        <tr><td>Measured results</td><td>74–78% mean average precision across 12 classes; fusion maintains 71–76% over a 24-hour cycle (vs. 56% thermal-only during crossover); 15,287 violations recorded in field trials with Vietnamese law enforcement agencies.</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #8): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 9 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #9</span><h3>Tactical Drone Rescue (Multi-Spectral SAR Processing)</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>Search & Rescue / Defense & emergency response</td></tr>
+        <tr><td>Solution type</td><td>Multi-Spectral Sensor Fusion (RGB + Thermal) & Edge AI Optimization</td></tr>
+        <tr><td>Problem</td><td>Finding victims in harsh environments (dense smoke, fog, night, or targets hidden under dense canopies) disables regular RGB cameras; a lone thermal sensor lacks edge detail and is disturbed by environmental heat sources (sun-heated rocks, hot embers).</td></tr>
+        <tr><td>Solution</td><td>An edge computer-vision platform processing RGB and Thermal streams simultaneously in real time; Adaptive Multi-Spectral Integration (AMSI) architecture automatically adjusting morphological (RGB) and thermal feature weights by environment; deep TensorRT INT8 quantization on NVIDIA Jetson Orin NX to meet strict power/thermal budgets of rescue drones.</td></tr>
+        <tr><td>Measured results</td><td>78.4% mAP@50 in heavy smoke/night conditions (vs. ~22.3% mAP for RGB-only); model reduced from 86MB to 22MB; inference from ~11 FPS (PyTorch FP32) to 28–32 FPS (TensorRT INT8); ~10–12W power, ~25% payload energy saving vs. typical GPU, extending rescue flight time by 8–12 minutes.</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #9): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 10 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #10</span><h3>Road Damage Detection System</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>Transportation & urban infrastructure management</td></tr>
+        <tr><td>Solution type</td><td>Deep Learning, Real-time Edge Inference & GIS Telemetry Mapping</td></tr>
+        <tr><td>Problem</td><td>Inspecting and classifying road damage (potholes, cracks, subsidence) via manual patrols or specialized vehicles disrupts traffic, costs heavily and updates data slowly; running AI deep-learning on the UAV initially suffered memory bottlenecks and ~1.8s/frame latency, preventing real-time detection while in flight.</td></tr>
+        <tr><td>Solution</td><td>An automated infrastructure inspection system combining onboard edge AI with a GIS dashboard: heavy TensorRT INT8 quantization eliminating memory-buffer overflow; an automated pipeline extracting GPS/telemetry metadata to locate and project damage coordinates onto Leaflet.js/PostgreSQL via a FastAPI backend.</td></tr>
+        <tr><td>Measured results</td><td>76.2% mAP@50 on road-damage dataset (longitudinal/transverse cracks, potholes, subsidence); inference accelerated from ~1.8s/frame (PyTorch FP32) to 28–32 FPS (TensorRT INT8), enabling continuous scanning at 25–35 km/h; corrected GPS positioning error under ~1.5m; ~70% lower inspection cost/time vs. manual vehicle patrols.</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #10): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 11 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #11</span><h3>FinOps Platform — Multi-cloud cost management</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>IT – Cloud / Finance (FinOps)</td></tr>
+        <tr><td>Solution type</td><td>Big Data / Software Development</td></tr>
+        <tr><td>Problem</td><td>Cloud costs scattered across 6 providers (AWS, GCP, Azure, Alibaba, Tencent, Huawei); manual invoice generation; no centralized customer/deal data; no cost anomaly detection.</td></tr>
+        <tr><td>Solution</td><td>Built a platform for ingesting and normalizing multi-cloud cost data, financial dashboards, automated invoicing integrated with ZOHO, internal CRM with 4-role RBAC; a 6-phase roadmap from internal use to external customer expansion.</td></tr>
+        <tr><td>Measured results</td><td>Targets (BRD success criteria, not yet operational figures): 100% successful ingestion; 100% automated invoices; 100% of costs mapped to customers; cost anomaly alerts.</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #11): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 12 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #12</span><h3>AI Inventory Analysis &amp; Export Management System</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>Manufacturing / Air cargo / Logistics</td></tr>
+        <tr><td>Solution type</td><td>AI Modeling (forecasting) + Software Development</td></tr>
+        <tr><td>Problem</td><td>An air cargo equipment manufacturer (150+ airlines, 700,000+ ULDs delivered) managed inventory manually: 15–20% stockouts, $500K+ excess inventory; exports relied on a 48-column Excel sheet, taking 2–3 hours per shipment with a 15–20% document error rate.</td></tr>
+        <tr><td>Solution</td><td>AI inventory analysis (ABC classification, seasonal forecasting, anomaly detection, auto-generated ROP purchase orders) plus a web-based export management system replacing Excel (auto-generated Commercial Invoice, Packing List, e-Customs; HS code validation).</td></tr>
+        <tr><td>Measured results</td><td>Targets: 70% fewer stockouts, 30% less excess inventory; 85–90% faster document preparation (2–3 hours → 15–20 minutes per shipment); ~$1.55M saved per year; 530–710% ROI over 3 years.</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #12): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 13 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #13</span><h3>AI Learning Assistant (RAG + Knowledge Graph)</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>Education / EdTech</td></tr>
+        <tr><td>Solution type</td><td>GenAI (RAG, LLM)</td></tr>
+        <tr><td>Problem</td><td>Students needed homework support and curriculum-aligned learning; AI answers had to follow the syllabus, be safe for children and be controllable by parents/schools.</td></tr>
+        <tr><td>Solution</td><td>AI learning platform: RAG over a vector store plus a knowledge graph, LLM-generated structured lessons/quizzes/answers, two-stage moderation (pre/post-answer) with bias &amp; fact checks, multi-tenant (schools/classes), offline-capable PWA; POC scoped to 2 subjects per an international curriculum.</td></tr>
+        <tr><td>Measured results</td><td>Targets: POC budget ~1.12 billion VND (~$42,800); scope of 2 subjects across multiple grades (operational figures to be added).</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #13): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 14 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #14</span><h3>AI Solution for Community Communication &amp; Operations</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>Community / Communications / Web3</td></tr>
+        <tr><td>Solution type</td><td>GenAI (RAG, local LLM)</td></tr>
+        <tr><td>Problem</td><td>Managing communication channels (Telegram, Twitter) consumed significant human effort: answering repeated questions, finding the right experts, and drafting/approving posts.</td></tr>
+        <tr><td>Solution</td><td>4-module MVP: a messaging-platform knowledge bot (RAG, answering accurately and saying "no" when information is missing), a member-matching tool against a member database, a social posting assistant (drafting, handle correction, approval &amp; publishing) and a content advisor — running local LLMs for data privacy.</td></tr>
+        <tr><td>Measured results</td><td>Targets (bounty project): MVP plus architecture proposal delivered on time (contest outcome to be added).</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #14): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 15 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #15</span><h3>CRM x ATS System (Clients &amp; Recruitment)</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>HR / Recruitment / Services</td></tr>
+        <tr><td>Solution type</td><td>Software Development (CRM/ATS)</td></tr>
+        <tr><td>Problem</td><td>Manual, fragmented management of clients, contracts, job orders and candidate pipelines; poor pipeline visibility and no performance measurement.</td></tr>
+        <tr><td>Solution</td><td>Unified CRM + ATS: client onboarding and full contract lifecycle (template to e-signature), visual job-order pipeline, candidate pool (profile parsing, skill tagging, advanced search, duplicate-submission prevention), placement recording &amp; fee calculation, and revenue reporting by time/client/employee.</td></tr>
+        <tr><td>Measured results</td><td>Targets: reduced time-to-contract and time-to-placement; higher closing rates; accurate automated reporting (specific figures to be added).</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #15): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 16 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #16</span><h3>Transport &amp; Logistics ERP</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>Transportation / Logistics</td></tr>
+        <tr><td>Solution type</td><td>Software Development (ERP)</td></tr>
+        <tr><td>Problem</td><td>A company operating 208 vehicles and 215 drivers ran fragmented processes: manual quotes/contracts/receivables, scattered customs documents, experience-based dispatch and non-transparent driver payroll.</td></tr>
+        <tr><td>Solution</td><td>Built a 6-module ERP (Reporting center, Sales, Customs &amp; Documents, Fleet dispatch, HRM, Finance) plus a mobile app for drivers: management of 1,780 tires, GPS check-ins at every milestone, real-time map-style routing, contribution-based payroll, and company-standard document templates.</td></tr>
+        <tr><td>Measured results</td><td>Demo-system capabilities: real-time data consolidation for 208 vehicles/215 drivers; standardized printed documents; transparent trip costs and driver payroll.</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #16): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 17 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #17</span><h3>Multi-tenant Franchise Management Platform</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>Franchising / Services / Commerce</td></tr>
+        <tr><td>Solution type</td><td>Software Development (Multi-tenant SaaS)</td></tr>
+        <tr><td>Problem</td><td>Franchise businesses managed quotes, jobs, invoices, collections and customer communication in silos, making it hard to scale across branches/industries.</td></tr>
+        <tr><td>Solution</td><td>Multi-tenant platform with per-tenant data isolation: Sales &amp; Quoting, Job Tracking &amp; Invoicing, accounting integration (Xero/QuickBooks/MYOB), multi-gateway payments, Communication Hub, location-aware booking, and AI ad copy &amp; receipt classification.</td></tr>
+        <tr><td>Measured results</td><td>Delivery capabilities: tenant-level data isolation &amp; white-labeling; automated quote-to-payment-to-reconciliation flow; industry-pack expansion mechanism.</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #17): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 18 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #18</span><h3>Ticketless Parking App (Mobile + Backend)</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>Transportation / Urban / Technology</td></tr>
+        <tr><td>Solution type</td><td>Software Development (Mobile + Backend)</td></tr>
+        <tr><td>Problem</td><td>Manual parking workflows: license-plate recognition, fee calculation, ticket issuance and slow payments; poor digital experience for users.</td></tr>
+        <tr><td>Solution</td><td>Flutter mobile app + NestJS backend: SSO, payment gateway integration, plate recognition from external sources, map-based car park discovery, automated ticket &amp; PDF receipt generation, multi-language; Docker deployment, Kubernetes-ready.</td></tr>
+        <tr><td>Measured results</td><td>Targets: MVP in 3.5 months, ~1,153 work hours, 40+ user stories (completion status to be added).</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #18): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 19 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #19</span><h3>Vertical Short-form Film Streaming Platform</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>Entertainment / Media / Streaming</td></tr>
+        <tr><td>Solution type</td><td>Software Development (Mobile App + Backend)</td></tr>
+        <tr><td>Problem</td><td>No dedicated platform for professional, structured short films; difficulty protecting copyrighted content and charging users directly.</td></tr>
+        <tr><td>Solution</td><td>Designed a vertical short-film platform: unlimited vertical scroll, a virtual "credit" system for per-episode purchases plus VIP membership, local e-wallet &amp; Apple/Google billing integration, DRM, screen-recording protection and dynamic watermarking for leak tracing.</td></tr>
+        <tr><td>Measured results</td><td>Design capability: clear monetization model (pay-per-episode + VIP); content plan of 10 series at launch + 5 series/month.</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #19): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 20 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #20</span><h3>AI Travel Planning Platform</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>Travel / Consumer technology</td></tr>
+        <tr><td>Solution type</td><td>GenAI (LLM) + Software Development</td></tr>
+        <tr><td>Problem</td><td>Manual itinerary planning is time-consuming and does not optimize travel distance between points of interest.</td></tr>
+        <tr><td>Solution</td><td>Designed the PRD &amp; architecture for a platform that generates a complete itinerary in 60 seconds from natural-language input: a "proximity" algorithm clusters attractions into walkable groups, optimizes daily ordering, suggests stays/transport, adds community validation, and includes a B2B dashboard for travel agents.</td></tr>
+        <tr><td>Measured results</td><td>Targets: itinerary generation under 60 seconds; global destination coverage; 1,000+ concurrent users; ≥99.5% uptime.</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #20): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+
+    <!-- CASE 21 -->
+    <div class="cs">
+      <div class="cs-head"><span class="cs-num">CASE STUDY #21</span><h3>Sales Deck for an AI Prospect-Research Tool</h3></div>
+      <table>
+        <tr><td>Industry / Domain</td><td>B2B SaaS / Sales Enablement</td></tr>
+        <tr><td>Solution type</td><td>Content &amp; Pitch (Sales Enablement) / GenAI</td></tr>
+        <tr><td>Problem</td><td>An AI tool that scores and researches prospects needed a persuasive sales deck for B2B sales teams in the DACH market.</td></tr>
+        <tr><td>Solution</td><td>Designed a 5–9 slide deck: core value proposition, how the product works, benefits for sales/SDR teams with visual mockups — applying the MECE principle and ready for live presentation.</td></tr>
+        <tr><td>Measured results</td><td>Targets: complete PDF-ready deck suitable for direct presentation; viewers immediately grasp the value and are motivated to sign up or book a demo (feedback to be added).</td></tr>
+        <tr class="demo-row"><td>Demo link (if any)</td><td>To be added</td></tr>
+      </table>
+      <!-- 🎬 MEDIA SLOT (Case #21): ADD <iframe> / <video> / <img> HERE -->
+    </div>
+    <div class="note-callout">
+      <b>Additional note:</b> Beyond the case studies above, PiXerse also maintains an internal solution knowledge base (Omnichannel CRM, automated eKYC, etc.) for consulting purposes — please contact us for details per industry.
+    </div>
+  </section>
+
+  <!-- ================= 4. TEAM ================= -->
+  <section id="s4">
+    <h2><span class="sec-no">4</span> TEAM</h2>
+    <div class="grid2">
+      <div class="mini">
+        <h3>🧠 Core Team</h3>
+        <p>A core R&amp;D team with <b>5+ years of experience</b> in Big Data and AI.</p>
+      </div>
+      <div class="mini">
+        <h3>🤝 Working model</h3>
+        <p>Ready to provide a Dedicated Team model actively supporting international partners (Australia, US, Europe, APAC).</p>
+      </div>
+      <div class="mini" style="grid-column:1/-1;">
+        <h3>⚡ Advantage</h3>
+        <p>Extremely flexible, fast adoption of technology trends (especially AI) translated into practical business solutions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 5-10. PLACEHOLDERS ================= -->
+  <section id="s5">
+    <h2><span class="sec-no">5</span> SECURITY &amp; COMPLIANCE</h2>
+    <p class="lead" style="font-size:14px;">ISO/SOC certifications, customer data handling, AI governance, data deletion procedures, NDAs — <i>to be completed from the original CAPABILITY_PROFILE.md</i>.</p>
+  </section>
+
+  <section id="s6">
+    <h2><span class="sec-no">6</span> DELIVERY PROCESS</h2>
+    <p class="lead" style="font-size:14px;">Discovery/PoC → MVP → Production → Handover &amp; SLA — <i>to be completed from the original CAPABILITY_PROFILE.md</i>.</p>
+  </section>
+
+  <section id="s7">
+    <h2><span class="sec-no">7</span> COMMERCIALS &amp; CONTRACT</h2>
+    <p class="lead" style="font-size:14px;">Pricing models, IP ownership, warranty, post-handover support, payment terms — <i>to be completed from the original CAPABILITY_PROFILE.md</i>.</p>
+  </section>
+
+  <section id="s8">
+    <h2><span class="sec-no">8</span> CLIENTS &amp; REFERENCES</h2>
+    <p class="lead" style="font-size:14px;">Notable clients, contactable references, ecosystem partners, external reviews — <i>to be completed from the original CAPABILITY_PROFILE.md</i>.</p>
+  </section>
+
+  <section id="s9">
+    <h2><span class="sec-no">9</span> VISION &amp; POSITIONING</h2>
+    <p class="lead" style="font-size:14px;">How PiXerse differs from large integrators and startups; long-term vision — <i>to be completed from the original CAPABILITY_PROFILE.md</i>.</p>
+  </section>
+
+  <section id="s10">
+    <h2><span class="sec-no">10</span> CONTACT PIXERSE</h2>
+    <p class="lead" style="font-size:14px;">Next steps, point of contact, email, phone/Zalo/WhatsApp, website/LinkedIn, response-time commitment — <i>to be completed from the original CAPABILITY_PROFILE.md</i>.</p>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <div class="cta">
+    <h2>Let's drive digital transformation together</h2>
+    <p>Need an "outsourced AI R&amp;D unit" to automate your internal operations or deliver technology solutions to the members of your network?</p>
+    <a class="btn btn-primary" href="mailto:hello@pixerse.com">Contact us</a>
+  </div>
+
+  <footer>
+    PiXerse Capability Profile · UBT Submission · Version 1.0 · Updated 19/08/2026
+  </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PiXerse CFO Handover Procedure</title>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true, securityLevel: 'loose', theme: 'neutral' });
+  </script>
+  <style>
+    :root { --purple:#6d28d9; --ink:#172033; --muted:#64748b; --line:#e2e8f0; --soft:#f8fafc; --green:#166534; --orange:#9a3412; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:#eef2f7; font:15px/1.65 Arial, sans-serif; }
+    .page { max-width:1100px; margin:0 auto; padding:32px 28px 72px; background:#fff; }
+    header { color:#fff; background:linear-gradient(135deg,#111827,#4c1d95); border-radius:18px; padding:38px 42px; margin-bottom:28px; }
+    h1 { margin:0 0 8px; font-size:32px; line-height:1.2; }
+    h2 { border-bottom:3px solid #ddd6fe; padding-bottom:8px; margin-top:42px; color:#312e81; }
+    h3 { margin-top:26px; color:#334155; }
+    .subtitle { color:#ddd6fe; font-size:17px; }
+    .meta { display:flex; flex-wrap:wrap; gap:18px; margin-top:22px; color:#e2e8f0; font-size:13px; }
+    .callout { border-left:5px solid var(--purple); background:#f5f3ff; padding:14px 18px; margin:18px 0; }
+    .warning { border-left-color:#ea580c; background:#fff7ed; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .card { border:1px solid var(--line); border-radius:12px; padding:16px; background:var(--soft); }
+    .card h3 { margin:0 0 6px; font-size:17px; }
+    table { width:100%; border-collapse:collapse; margin:15px 0 24px; }
+    th, td { border:1px solid var(--line); padding:9px 11px; text-align:left; vertical-align:top; }
+    th { background:#f1f5f9; color:#312e81; }
+    code { background:#f1f5f9; border-radius:4px; padding:2px 5px; }
+    pre { white-space:pre-wrap; background:#0f172a; color:#e2e8f0; border-radius:10px; padding:16px; overflow:auto; }
+    .mermaid { margin:20px 0 28px; padding:16px; border:1px solid var(--line); border-radius:12px; background:#fff; overflow:auto; }
+    li { margin:4px 0; }
+    footer { margin-top:50px; border-top:1px solid var(--line); padding-top:18px; color:var(--muted); font-size:13px; }
+    @media (max-width:760px) { .page { padding:18px 14px 48px; } header { padding:26px 22px; } h1 { font-size:26px; } .grid { grid-template-columns:1fr; } }
+    @media print { body { background:#fff; } .page { max-width:none; padding:0; } header { break-inside:avoid; } h2 { break-after:avoid; } .mermaid, table, .card { break-inside:avoid; } }
+  </style>
+</head>
+<body>
+<main class="page">
+  <header>
+    <h1>PiXerse &amp; PiXedu</h1>
+    <div class="subtitle">Bộ quy trình bàn giao CFO và kiểm soát tài chính</div>
+    <div class="meta">
+      <span>Pháp nhân: PiXerse</span>
+      <span>Business units: PiXerse Core · PiXedu · Shared</span>
+      <span>Tiền tệ chính: VND</span>
+      <span>Kỳ chốt: ngày 15 tháng kế tiếp</span>
+    </div>
+  </header>
+
+  <section>
+    <h2>1. Nguyên tắc điều hành</h2>
+    <div class="callout"><strong>PiXedu là business unit trực thuộc PiXerse.</strong> PiXedu được tách trong báo cáo quản trị nhưng không phải pháp nhân, tài khoản ngân hàng hay báo cáo thuế riêng.</div>
+    <div class="grid">
+      <div class="card"><h3>PiXerse Core</h3><p>AI R&amp;D, phần mềm, outsourcing, consulting, SaaS, dự án B2B.</p></div>
+      <div class="card"><h3>PiXedu</h3><p>Học phí, lớp học, workshop, giáo viên, kit STEM, EdTech.</p></div>
+      <div class="card"><h3>Shared</h3><p>Văn phòng, kế toán, pháp lý, quản lý và chi phí dùng chung.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>2. Chu trình tài chính tổng thể</h2>
+    <div class="mermaid">flowchart TD
+      A[Phát sinh nghiệp vụ] --> B[Phân loại PiXerse / PiXedu / Shared]
+      B --> C[Khách hàng / học viên / nhà cung cấp]
+      C --> D[Hợp đồng / đăng ký học / đề nghị chi]
+      D --> E[Giao dịch tài chính]
+      E --> F[Hóa đơn và chứng từ]
+      F --> G[Kiểm tra]
+      G --> H[Phê duyệt]
+      H --> I[Thu tiền hoặc thanh toán]
+      I --> J[Đối soát ngân hàng]
+      J --> K[Khóa sổ]
+      K --> L[Báo cáo CFO và thuế]
+    </div>
+  </section>
+
+  <section>
+    <h2>3. Phân loại doanh thu và chi phí</h2>
+    <p>Chỉ hiển thị 2–3 mục thường dùng. Các nghiệp vụ thay đổi theo dự án chọn <code>Khác</code> và bắt buộc nhập mục đích chi tiết.</p>
+    <table>
+      <thead><tr><th>Business unit</th><th>Doanh thu</th><th>Chi phí</th></tr></thead>
+      <tbody>
+        <tr><td>PiXerse Core</td><td>Dự án/phần mềm; AI/consulting; Khác</td><td>Nhân sự/subcontractor; Cloud/phần mềm; Khác</td></tr>
+        <tr><td>PiXedu</td><td>Học phí; Workshop/đào tạo; Khác</td><td>Giáo viên/trợ giảng; Giáo cụ/địa điểm; Khác</td></tr>
+        <tr><td>Shared</td><td>Không dùng cho doanh thu thông thường</td><td>Văn phòng/quản lý; Kế toán/pháp lý; Khác</td></tr>
+      </tbody>
+    </table>
+    <div class="mermaid">flowchart TD
+      A[Phát sinh giao dịch] --> B[Chọn PiXerse]
+      B --> C[Chọn business unit]
+      C --> D[Chọn thu hoặc chi]
+      D --> E[Chọn danh mục chính hoặc Khác]
+      E --> F{Chọn Khác?}
+      F -- Có --> G[Bắt buộc nhập mục đích]
+      F -- Không --> H[Nhập thông tin giao dịch]
+      G --> H
+      H --> I[Đính kèm chứng từ]
+      I --> J{Đủ thông tin?}
+      J -- Không --> K[Thông báo kế toán bổ sung]
+      J -- Có --> L[Kiểm tra và phê duyệt]
+      K --> L
+    </div>
+  </section>
+
+  <section>
+    <h2>4. Quy trình PiXedu: học phí, điểm danh và học bù</h2>
+    <div class="mermaid">flowchart TD
+      A[Học viên đăng ký khóa] --> B[Tạo enrollment]
+      B --> C[Xác định và ghi nhận học phí]
+      C --> D[Xếp lịch lớp]
+      D --> E{Ngày lễ?}
+      E -- Có --> F[Không trừ buổi và lùi lịch]
+      E -- Không --> G[Giáo viên dạy]
+      G --> H[Điểm danh từng học viên]
+      H --> I[Học viên nghỉ vẫn trừ 1 buổi]
+      H --> J[Học bù diễn ra: trừ thêm 1 buổi]
+      I --> K[Cập nhật buổi còn lại]
+      J --> K
+      K --> L{Còn 3/2/1/0 buổi?}
+      L -- Có --> M[Thông báo gia hạn và thu khóa mới]
+      L -- Không --> N[Tiếp tục học]
+    </div>
+    <ul>
+      <li>Học viên có mặt, vắng có phép và vắng không phép đều tính là đã sử dụng buổi nếu lớp vẫn diễn ra.</li>
+      <li>Ngày lễ hoặc buổi PiXedu hủy không trừ buổi và không tính công giáo viên.</li>
+      <li>Học bù chỉ tính khi buổi bù thực sự diễn ra; cảnh báo thu tiền vẫn dựa trên số buổi đã sử dụng và trạng thái khóa học.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>5. Quy trình giáo viên và thanh toán</h2>
+    <div class="mermaid">flowchart TD
+      A[Buổi học kết thúc] --> B[Giáo viên xác nhận tên và buổi dạy]
+      B --> C[Điểm danh học viên]
+      C --> D[Quản lý PiXedu kiểm tra]
+      D --> E{Buổi hợp lệ?}
+      E -- Không --> F[Trả về chỉnh sửa]
+      E -- Có --> G[Tính buổi/giờ công]
+      G --> H[Áp dụng đơn giá tại thời điểm dạy]
+      H --> I[Lập kỳ thanh toán]
+      I --> J[Kế toán kiểm tra]
+      J --> K[CFO/Manager phê duyệt]
+      K --> L[Thanh toán]
+      L --> M[Đối soát ngân hàng]
+      M --> N[Đóng kỳ công]
+    </div>
+    <p><strong>Công thức:</strong> Buổi công giáo viên = số buổi thực tế đã dạy và được xác nhận. Học viên nghỉ không làm giảm công giáo viên nếu lớp vẫn diễn ra.</p>
+  </section>
+
+  <section>
+    <h2>6. Quy trình PiXerse Core theo dự án</h2>
+    <div class="mermaid">flowchart TD
+      A[Lead/khách hàng] --> B[Báo giá]
+      B --> C[Ký hợp đồng]
+      C --> D[Tạo project và ngân sách]
+      D --> E[Phân bổ nhân sự]
+      E --> F[Ghi nhận giờ làm và chi phí]
+      F --> G[Nghiệm thu milestone]
+      G --> H[Lập hóa đơn]
+      H --> I[Theo dõi phải thu]
+      I --> J[Đối soát tiền]
+      J --> K[Tính biên lợi nhuận dự án]
+    </div>
+  </section>
+
+  <section>
+    <h2>7. Bổ sung thông tin và kiểm soát trước khi chốt sổ</h2>
+    <div class="mermaid">flowchart TD
+      A[Kiểm tra giao dịch] --> B{Thiếu thông tin/chứng từ?}
+      B -- Có --> C[Tạo yêu cầu bổ sung]
+      C --> D[Thông báo kế toán/người phụ trách]
+      D --> E[Bổ sung hóa đơn, giấy tờ, mục đích]
+      E --> F[Kế toán kiểm tra lại]
+      F --> B
+      B -- Không --> G[Đánh dấu đủ điều kiện chốt]
+    </div>
+    <p>Danh sách bắt buộc gồm: ngày, số tiền, business unit, mục đích, đối tượng, tài khoản thanh toán, trạng thái thanh toán, hóa đơn/chứng từ, người nhập và người duyệt.</p>
+  </section>
+
+  <section>
+    <h2>8. Điều chỉnh trong 3 tháng và audit trail</h2>
+    <div class="callout warning">Accountant, CEO hoặc Manager được phân quyền có thể điều chỉnh sổ cái và báo cáo trong vòng 3 tháng. Mọi thay đổi bắt buộc có lý do và lịch sử trước/sau.</div>
+    <table>
+      <thead><tr><th>Thông tin audit</th><th>Yêu cầu</th></tr></thead>
+      <tbody>
+        <tr><td>Giá trị trước/sau</td><td>Lưu cả old value và new value, không ghi đè lịch sử.</td></tr>
+        <tr><td>Lý do</td><td>Bắt buộc nhập adjustment reason/note.</td></tr>
+        <tr><td>Người và thời điểm</td><td>Lưu changed_by và changed_at.</td></tr>
+        <tr><td>Sau khi khóa</td><td>Không sửa trực tiếp; dùng bút toán điều chỉnh ở kỳ hiện tại.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>9. Chốt sổ ngày 15 tháng kế tiếp</h2>
+    <div class="mermaid">flowchart TD
+      A[Kỳ tháng đang mở] --> B[Đối soát giao dịch và ngân hàng]
+      B --> C[Kiểm tra công nợ, hóa đơn, công giáo viên]
+      C --> D[Phân bổ Shared Costs]
+      D --> E[Kiểm tra VAT và hồ sơ thiếu]
+      E --> F{Đủ thông tin?}
+      F -- Không --> G[Thông báo bổ sung]
+      G --> E
+      F -- Có --> H[Lập báo cáo nội bộ]
+      H --> I[Lập báo cáo thuế/kiểm toán]
+      I --> J[CEO/CFO/Manager rà soát]
+      J --> K[Điều chỉnh có audit note nếu cần]
+      K --> L[Phê duyệt]
+      L --> M[Ngày 15: khóa kỳ]
+    </div>
+    <p>Ví dụ: kỳ tháng 10 được hoàn thiện và điều chỉnh đến hết ngày 15/11. Sau thời điểm này, kỳ chuyển sang <code>locked</code>.</p>
+  </section>
+
+  <section>
+    <h2>10. Báo cáo nội bộ và báo cáo thuế/kiểm toán</h2>
+    <div class="grid">
+      <div class="card"><h3>Báo cáo nội bộ</h3><p>P&amp;L PiXerse Core, P&amp;L PiXedu, Shared Costs, dòng tiền quản trị, biên lợi nhuận dự án/lớp, công nợ thực tế, chi phí trích trước và dự báo.</p></div>
+      <div class="card"><h3>Báo cáo pháp nhân</h3><p>Toàn bộ doanh thu, chi phí, ngân hàng, phải thu, phải trả và kết quả của pháp nhân PiXerse.</p></div>
+      <div class="card"><h3>Thuế/kiểm toán</h3><p>Chỉ sử dụng dữ liệu đủ điều kiện chứng từ, hóa đơn, VAT và hồ sơ thanh toán; có bảng đối chiếu với báo cáo nội bộ.</p></div>
+    </div>
+    <div class="mermaid">flowchart TD
+      A[Dữ liệu giao dịch đã khóa] --> B[Kiểm tra chứng từ]
+      B --> C{Đủ điều kiện thuế?}
+      C -- Có --> D[Báo cáo thuế/kiểm toán]
+      C -- Không --> E[Báo cáo nội bộ + cờ chênh lệch]
+      D --> F[Đối chiếu ngân hàng và hóa đơn]
+      E --> G[Báo cáo quản trị CFO]
+      F --> H[Bảng đối chiếu nội bộ vs thuế]
+      G --> H
+    </div>
+  </section>
+
+  <section>
+    <h2>11. Lịch công việc CFO</h2>
+    <table>
+      <thead><tr><th>Tần suất</th><th>Việc cần làm</th></tr></thead>
+      <tbody>
+        <tr><td>Hàng ngày</td><td>Kiểm tra tiền vào/ra, giao dịch thiếu chứng từ, học phí sắp thu, buổi học và công giáo viên chưa xác nhận.</td></tr>
+        <tr><td>Hàng tuần</td><td>Đối soát ngân hàng, công nợ đến hạn, kỳ trả giáo viên, dòng tiền 13 tuần, dự án vượt ngân sách.</td></tr>
+        <tr><td>Trước ngày 15</td><td>Hoàn thiện giao dịch, chứng từ, hóa đơn, VAT, công giáo viên, phân bổ Shared và báo cáo.</td></tr>
+        <tr><td>Ngày 15</td><td>Phê duyệt, khóa kỳ và phát hành báo cáo nội bộ/thuế.</td></tr>
+        <tr><td>Hàng quý</td><td>Rà soát danh mục, tỷ lệ phân bổ, quyền truy cập, audit log và các khoản điều chỉnh.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>12. Bộ báo cáo tháng</h2>
+    <ul>
+      <li>Internal P&amp;L — PiXerse Core.</li>
+      <li>Internal P&amp;L — PiXedu.</li>
+      <li>Shared Cost Allocation.</li>
+      <li>Cashflow và dự báo 13 tuần.</li>
+      <li>Project Margin — PiXerse Core.</li>
+      <li>Class Margin và Tuition Receivable — PiXedu.</li>
+      <li>Teacher Payroll — PiXedu.</li>
+      <li>VAT input/output.</li>
+      <li>Bank reconciliation.</li>
+      <li>Internal vs Tax Reconciliation.</li>
+      <li>Missing documents và unapproved transactions.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>13. Checklist bàn giao CFO</h2>
+    <ul>
+      <li>Danh sách tài khoản ngân hàng và quyền phê duyệt.</li>
+      <li>Số dư tiền, công nợ, hóa đơn và nghĩa vụ thuế.</li>
+      <li>Hợp đồng PiXerse, milestone và khoản phải thu.</li>
+      <li>Danh sách lớp, học viên, học phí và giáo viên PiXedu.</li>
+      <li>Lịch công và kỳ thanh toán giáo viên.</li>
+      <li>Shared Costs và chính sách phân bổ.</li>
+      <li>Kỳ kế toán đang mở, kỳ đã khóa và các điều chỉnh còn treo.</li>
+      <li>Danh sách chứng từ/hóa đơn còn thiếu.</li>
+      <li>Quyền truy cập hệ thống và audit log.</li>
+      <li>Biên bản xác nhận số dư và trách nhiệm bàn giao.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>14. Phạm vi sử dụng và dữ liệu điền sau</h2>
+    <div class="callout"><strong>Trạng thái hồ sơ pháp nhân:</strong> đã chuẩn bị và xử lý xong. Không nhập lại phần này trong app/procedure vận hành; chỉ lưu nơi tham chiếu và người chịu trách nhiệm cập nhật khi pháp lý thay đổi.</div>
+    <p>Các thông tin vận hành có thể được quản lý bằng Pixinfance, Excel, Google Sheets hoặc phần mềm kế toán tùy mức độ phù hợp. Công cụ không quan trọng bằng việc dữ liệu có đủ trường, có người chịu trách nhiệm, có chứng từ và có lịch sử thay đổi.</p>
+    <table>
+      <thead><tr><th>Nhóm thông tin</th><th>Có thể dùng công cụ</th><th>Thông tin tối thiểu phải lưu</th></tr></thead>
+      <tbody>
+        <tr><td>Pháp nhân</td><td>Hồ sơ pháp lý/drive bảo mật</td><td>Mã số thuế, giấy phép, tài khoản thuế, chữ ký số, đầu mối phụ trách.</td></tr>
+        <tr><td>Giao dịch</td><td>App hoặc Excel</td><td>Ngày, số tiền, business unit, mục đích, đối tượng, tài khoản, chứng từ, người nhập.</td></tr>
+        <tr><td>PiXerse Core</td><td>App, Excel dự án hoặc ERP</td><td>Khách hàng, hợp đồng, milestone, doanh thu, chi phí, phải thu, biên lợi nhuận.</td></tr>
+        <tr><td>PiXedu</td><td>App hoặc Excel vận hành lớp</td><td>Học viên, phụ huynh, lớp, học phí, buổi học, điểm danh, giáo viên, công phải trả.</td></tr>
+        <tr><td>Thuế/kiểm toán</td><td>Phần mềm kế toán + kho chứng từ</td><td>Hóa đơn, VAT, bảng kê, chứng từ thanh toán, tờ khai, biên nhận nộp hồ sơ.</td></tr>
+      </tbody>
+    </table>
+    <h3>Nguyên tắc dùng Excel hoặc công cụ khác</h3>
+    <ul>
+      <li>Một file/sheet có một chủ sở hữu và ngày cập nhật.</li>
+      <li>Không dùng file cá nhân làm nguồn số liệu duy nhất.</li>
+      <li>Khóa phiên bản sau khi CFO duyệt; bản sửa phải có version và note.</li>
+      <li>Đặt mã liên kết giữa Excel, chứng từ, giao dịch và báo cáo.</li>
+      <li>Mỗi tháng lưu một bộ snapshot để CFO sau có thể tái hiện số liệu.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>15. Lịch thuế và nghĩa vụ định kỳ</h2>
+    <div class="callout warning"><strong>Lưu ý pháp lý:</strong> Đây là lịch kiểm soát để CFO lập kế hoạch, không thay thế xác nhận của kế toán thuế. Kỳ khai thực tế phụ thuộc phương pháp khai, doanh thu, tình trạng lao động, hóa đơn và quy định áp dụng tại thời điểm nộp. Từ năm 2026 có thay đổi pháp luật, vì vậy phải kiểm tra lại trước từng kỳ.</div>
+    <div class="mermaid">flowchart TD
+      A[Cuối kỳ phát sinh] --> B[Chốt doanh thu, chi phí, lương và hóa đơn]
+      B --> C[Xác định loại nghĩa vụ: VAT / TNCN / TNDN / BHXH]
+      C --> D[Xác định tháng, quý hoặc năm]
+      D --> E[Lập hồ sơ và kiểm tra chứng từ]
+      E --> F[Người phụ trách rà soát]
+      F --> G[Nộp hồ sơ điện tử]
+      G --> H[Nộp tiền nếu phát sinh]
+      H --> I[Lưu tờ khai, biên nhận và chứng từ nộp]
+      I --> J[Cập nhật tax calendar và trạng thái hoàn tất]
+    </div>
+    <table>
+      <thead><tr><th>Nghĩa vụ/nhóm việc</th><th>Tần suất kiểm soát</th><th>Hồ sơ cần chuẩn bị</th><th>Ghi chú vận hành</th></tr></thead>
+      <tbody>
+        <tr><td>VAT</td><td>Tháng hoặc quý theo phương pháp/điều kiện áp dụng</td><td>Hóa đơn đầu ra, đầu vào, bảng kê, đối soát doanh thu/ngân hàng</td><td>Chốt dữ liệu trước hạn; kế toán thuế xác nhận kỳ khai và hạn nộp.</td></tr>
+        <tr><td>Khấu trừ TNCN</td><td>Tháng/quý và quyết toán năm tùy điều kiện</td><td>Bảng lương, hợp đồng, chứng từ khấu trừ, danh sách người lao động</td><td>Phân biệt nhân viên, cộng tác viên và giáo viên thuê ngoài.</td></tr>
+        <tr><td>TNDN</td><td>Tạm nộp theo quý và quyết toán năm</td><td>Doanh thu, chi phí hợp lệ, chi phí không được trừ, tạm nộp</td><td>Không dùng P&amp;L quản trị thay cho hồ sơ tính thu nhập chịu thuế.</td></tr>
+        <tr><td>Hóa đơn điện tử</td><td>Mỗi lần phát sinh nghĩa vụ lập hóa đơn</td><td>Hợp đồng, nghiệm thu/milestone, phiếu thu, thông tin người mua</td><td>Kiểm tra thời điểm lập theo loại hàng hóa/dịch vụ và quy định hiện hành.</td></tr>
+        <tr><td>BHXH/BHYT/BHTN</td><td>Hàng tháng khi có lao động thuộc diện tham gia</td><td>Bảng lương, biến động lao động, hồ sơ tăng/giảm, chứng từ nộp</td><td>Đơn vị phụ trách phải xác nhận hạn nộp theo cơ quan BHXH quản lý.</td></tr>
+        <tr><td>Quyết toán năm</td><td>Hàng năm</td><td>Sổ kế toán, báo cáo tài chính, hồ sơ TNDN/TNCN, đối chiếu thuế</td><td>Thời hạn pháp lý phải được kiểm tra theo luật và văn bản hướng dẫn tại năm thực hiện.</td></tr>
+      </tbody>
+    </table>
+    <h3>Các mốc pháp lý cần dùng làm điểm kiểm tra</h3>
+    <ul>
+      <li>Luật Quản lý thuế quy định thời hạn theo từng loại kỳ khai; ví dụ hồ sơ khai tháng thường có hạn theo tháng tiếp theo, hồ sơ khai quý theo quý tiếp theo và quyết toán năm theo thời hạn luật định.</li>
+      <li>Thời hạn nộp tiền thuế thường gắn với thời hạn nộp hồ sơ khai thuế, trừ trường hợp pháp luật hoặc thông báo của cơ quan thuế quy định khác.</li>
+      <li>Hóa đơn phải được lập đúng thời điểm và đúng nội dung của giao dịch hàng hóa/dịch vụ; hồ sơ nghiệm thu/milestone của PiXerse phải được lưu cùng bộ chứng từ.</li>
+      <li>Lịch thuế trong hệ thống phải có cột “đã xác nhận năm áp dụng” và người xác nhận; không đặt cứng một ngày nếu chưa kiểm tra kỳ khai thực tế.</li>
+    </ul>
+    <p class="muted">Nguồn tham chiếu: <a href="https://vanban.chinhphu.vn/default.aspx?docid=29975&amp;pageid=27160" target="_blank" rel="noreferrer">Luật Quản lý thuế</a> và <a href="https://vanban.chinhphu.vn/?docid=94740&amp;pageid=27160" target="_blank" rel="noreferrer">quy định về hóa đơn</a>. Kế toán thuế cần rà soát văn bản mới, đặc biệt các thay đổi có hiệu lực trong năm 2026, trước khi lập lịch chính thức.</p>
+  </section>
+
+  <section>
+    <h2>16. Bàn giao thông tin giữa CFO</h2>
+    <div class="mermaid">flowchart TD
+      A[CFO cũ lập CFO Handover Pack] --> B[Đóng sổ đến ngày bàn giao]
+      B --> C[Đối soát ngân hàng, công nợ, thuế, học phí, giáo viên]
+      C --> D[Lập danh sách khoản còn treo và hồ sơ thiếu]
+      D --> E[CFO mới kiểm tra độc lập]
+      E --> F{Số liệu khớp?}
+      F -- Không --> G[Lập biên bản chênh lệch và phân công xử lý]
+      G --> E
+      F -- Có --> H[Ký biên bản bàn giao]
+      H --> I[Chuyển quyền vận hành]
+      I --> J[Theo dõi 30 ngày và đánh giá lại]
+    </div>
+    <table>
+      <thead><tr><th>Gói bàn giao</th><th>Nội dung</th></tr></thead>
+      <tbody>
+        <tr><td>Opening balances</td><td>Tiền, công nợ, thuế, lương, giáo viên, tồn kho, tài sản và các khoản tạm ứng.</td></tr>
+        <tr><td>Open issues</td><td>Việc chưa xong, giá trị, người xử lý, hạn hoàn thành, rủi ro nếu chậm.</td></tr>
+        <tr><td>Tax calendar</td><td>Loại nghĩa vụ, kỳ khai, hạn dự kiến, người lập, người duyệt, bằng chứng đã nộp.</td></tr>
+        <tr><td>Evidence index</td><td>Mã giao dịch, tên file, vị trí lưu, loại chứng từ, trạng thái đủ/thiếu.</td></tr>
+        <tr><td>Access and approval</td><td>Tài khoản, quyền, hạn mức duyệt, người thay thế và ngày rà soát.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>PiXerse CFO Handover Procedure · PiXedu business unit · Bản dùng cho quản trị nội bộ và chuẩn bị hồ sơ thuế/kiểm toán. Cập nhật nội dung thuế phải được xác nhận lại theo năm áp dụng.</footer>
+</main>
+</body>
+</html>

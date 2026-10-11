@@ -1,0 +1,16 @@
+
+> webapp@0.1.0 dev
+> next dev
+
+▲ Next.js 16.3.0 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.50:3000
+- Environments: .env.local
+✓ Ready in 3.3s
+⚠ Warning: Next.js ignored package-lock.json in C:\Users\Giang Esley\Downloads\personal app\personal_finance because it is outside the current Git repository (C:\Users\Giang Esley\Downloads\personal app\personal_finance\webapp).
+ To use this directory, set `turbopack.root` in your Next.js config.
+
+✓ Running next.config.ts took 166ms
+
+ GET /login 200 in 3.0s (next.js: 957ms, proxy.ts: 71ms, application-code: 1928ms)
+ GET /login?next=%2Fnotifications 200 in 338ms (next.js: 65ms, proxy.ts: 38ms, application-code: 235ms)
